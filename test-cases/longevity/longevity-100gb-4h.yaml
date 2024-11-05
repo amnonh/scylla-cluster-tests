@@ -6,14 +6,15 @@ stress_cmd: ["cassandra-stress write cl=QUORUM duration=240m -schema 'replicatio
              "cassandra-stress read  cl=QUORUM duration=240m -schema 'replication(strategy=NetworkTopologyStrategy,replication_factor=3) compaction(strategy=SizeTieredCompactionStrategy)' -mode cql3 native -rate threads=128 -pop seq=1..20971520 -col 'n=FIXED(10) size=FIXED(512)' -log interval=5"
              ]
 
-n_db_nodes: 6
+n_db_nodes: 12
 n_loaders: 2
 n_monitor_nodes: 1
 seeds_num: 3
 simulated_racks: 3
 
-instance_type_db: 'i4i.16xlarge'
+instance_type_db: 'i4i.4xlarge'
 instance_type_loader: 'c5.2xlarge'
+instance_type_monitor: 't3.xlarge'
 
 nemesis_class_name: 'SisyphusMonkey'
 nemesis_seed: '032'
@@ -21,8 +22,8 @@ nemesis_seed: '032'
 user_prefix: 'longevity-100gb-4h'
 space_node_threshold: 64424
 
-server_encrypt: true
-client_encrypt: true
+server_encrypt: false
+client_encrypt: false
 
 pre_create_schema: True
 sstable_size: 100
