@@ -5963,6 +5963,7 @@ class BaseMonitorSet:
             mkdir -p {self.monitoring_data_dir}
             echo "" > UA.sh
             PATH=$PATH:/usr/sbin ./start-all.sh \
+                    --enable-protobuf \
             -D "{labels} --env RENDERING_VIEWPORT_MAX_HEIGHT=15000 --env RENDERING_VIEWPORT_DEVICE_SCALE_FACTOR=4" \
             -s `realpath "{self.monitoring_conf_dir}/scylla_servers.yml"` \
             -n `realpath "{self.monitoring_conf_dir}/node_exporter_servers.yml"` \
